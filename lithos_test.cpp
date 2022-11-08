@@ -1,6 +1,18 @@
 #include "lithos.hpp"
 #include <string>
 
+void fib(int n) {
+  int f[n];
+  f[0] = 0;
+  f[1] = 1;
+  snfor (i, 2, < n, ++) {
+    f[i] = f[i - 1] + f[i - 2];
+  }
+  sfor (i, < n, ++) {
+    printf("%d ", f[i]);
+  }
+}
+
 int main() {
   lithos::print("This is a print test.\n");
   lithos::println("This is a println test.");
@@ -51,6 +63,9 @@ int main() {
     x++;
   }
   lithos::println();
+
+  lithos::println("\nFib:");
+  fib(35);
 
   ret 0;
 }
