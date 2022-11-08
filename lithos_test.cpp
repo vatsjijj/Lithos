@@ -21,15 +21,6 @@ int main() {
   lithos::printfln("This is a %s test.", test1);
   lithos::string test2 = "printfendl";
   lithos::printfendl("This is a %s test.", test2);
-  std::string t = "test!!";
-  lithos::string test3 = lithos::toStr(t);
-  lithos::printfln(
-    "%s %s %s: %s",
-    "C++ does not like it when you use Lithos strings",
-    "instead of std::strings, so lithos::toStr() should",
-    "fix it because printfln breaks when std::string is used",
-    test3
-  );
   lithos::assert(1 + 5 == 6);
   // THIS WILL FAIL
   // lithos::assert(1 + 5 == 7);
@@ -66,6 +57,19 @@ int main() {
 
   lithos::println("\nFib:");
   fib(35);
+  lithos::println();
+
+  lithos::writeFile("test.txt", "i am being read!");
+  lithos::print(lithos::readFile("test.txt").c_str());
+  lithos::println();
+  lithos::removeFile("test.txt");
+
+  int y = 7 + 0.1;
+  lithos::println(y);
+  double yd = cast(double)y + 0.1;
+  lithos::println(yd);
+
+  lithos::execCmd("/usr/bin/fortune 2> /dev/null");
 
   ret 0;
 }

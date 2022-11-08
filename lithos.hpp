@@ -5,7 +5,6 @@
 #include <cstdarg>
 #include <string>
 #include <filesystem>
-#include <any>
 
 namespace lithos {
   // Syntatic sugar.
@@ -16,6 +15,7 @@ namespace lithos {
   #define snfor(var, val, expr1, expr2) \
     for (int var = val; var expr1; var expr2)
   #define ret return
+  #define cast(type) (type)
 
   // Lithos defines a classic C style
   // string type.
@@ -47,15 +47,11 @@ namespace lithos {
     T value;
   };
 
-  // Converts a std::string into a
-  // lithos::string.
-  string toStr(std::string str) {
-    string newStr = str.c_str();
-    ret newStr;
-  }
-
   // Takes a single string and prints it.
   void print(string str) {
+    std::cout << str;
+  }
+  void print(std::string str) {
     std::cout << str;
   }
   void print(int num) {
@@ -75,6 +71,9 @@ namespace lithos {
   void println(string str) {
     std::cout << str << "\n";
   }
+  void println(std::string str) {
+    std::cout << str << "\n";
+  }
   void println(int num) {
     std::cout << num << "\n";
   }
@@ -90,6 +89,9 @@ namespace lithos {
   }
   // Takes a single string and prints it with an endl.
   void printendl(string str) {
+    std::cout << str << std::endl;
+  }
+  void printendl(std::string str) {
     std::cout << str << std::endl;
   }
   void printendl(int num) {
@@ -191,6 +193,12 @@ namespace lithos {
     }
   }
 
+  // Runs a command but returns nothing.
+  void execCmd(string cmd) {
+    int result = system(cmd);
+    assertf(result == 0, "%s did not return zero.", cmd);
+  }
+
   // Simply creates a file.
   void createFile(string filename) {
     std::fstream file;
@@ -256,25 +264,22 @@ namespace lithos {
 
   // Takes a file to read from and rets
   // the content as a string.
-  string readFile(string filename) {
+  std::string readFile(string filename) {
     std::ifstream file;
     string contents;
-    char tmp;
     file.open(filename);
     assertf(file.is_open(), "Failed to open %s.", filename);
-    while (file) {
-      tmp = file.get();
-      contents += tmp;
-    }
+    std::stringstream buf;
+    buf << file.rdbuf();
     file.close();
-    ret contents;
+    return buf.str();
   }
 
   // Takes a filename, and then deletes the file.
   void removeFile(string filename) {
     assertf(
       std::filesystem::remove(filename),
-      "Failed to remove file %s.", filename
+      "Failed to remove %s.", filename
     );
   }
 }
