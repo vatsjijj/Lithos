@@ -272,7 +272,7 @@ namespace lithos {
     std::stringstream buf;
     buf << file.rdbuf();
     file.close();
-    return buf.str();
+    ret buf.str();
   }
 
   // Takes a filename, and then deletes the file.
