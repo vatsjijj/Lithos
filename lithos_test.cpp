@@ -42,5 +42,15 @@ int main() {
     lithos::println(num);
   }
 
+  int x = 0;
+  loop {
+    if (x == 10) {
+      break;
+    }
+    printf("%d ", x);
+    x++;
+  }
+  lithos::println();
+
   return 0;
 }

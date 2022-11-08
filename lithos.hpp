@@ -10,6 +10,7 @@
 namespace lithos {
   // Syntatic sugar.
   #define foreach(val, in) for (auto val : in)
+  #define loop while (true)
 
   // Lithos defines a classic C style
   // string type.
