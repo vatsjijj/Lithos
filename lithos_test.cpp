@@ -32,7 +32,7 @@ int main() {
   lithos::createFile("DELETEME.txt");
   lithos::removeFile("DELETEME.txt");
 
-  for (int i = 0; i < 10; i++) {
+  sfor (i, < 10, ++) {
     printf("%d ", i);
   }
   lithos::println();
