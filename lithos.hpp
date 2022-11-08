@@ -244,6 +244,15 @@ namespace lithos {
     file << contents;
     file.close();
   }
+  void appendFile(
+    string filename, double contents
+  ) {
+    std::fstream file;
+    file.open(filename, std::ios_base::app);
+    assertf(file.is_open(), "Failed to open %s.", filename);
+    file << contents;
+    file.close();
+  }
 
   // Takes a file to read from and rets
   // the content as a string.
