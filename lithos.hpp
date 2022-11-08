@@ -12,6 +12,7 @@ namespace lithos {
   #define foreach(val, in) for (auto val : in)
   #define loop while (true)
   #define sfor(var, expr1, expr2) for (int var = 0; var expr1; var expr2)
+  #define ret return
 
   // Lithos defines a classic C style
   // string type.
@@ -47,7 +48,7 @@ namespace lithos {
   // lithos::string.
   string toStr(std::string str) {
     string newStr = str.c_str();
-    return newStr;
+    ret newStr;
   }
 
   // Takes a single string and prints it.
@@ -241,7 +242,7 @@ namespace lithos {
     file.close();
   }
 
-  // Takes a file to read from and returns
+  // Takes a file to read from and rets
   // the content as a string.
   string readFile(string filename) {
     std::ifstream file;
@@ -254,7 +255,7 @@ namespace lithos {
       contents += tmp;
     }
     file.close();
-    return contents;
+    ret contents;
   }
 
   // Takes a filename, and then deletes the file.

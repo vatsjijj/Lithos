@@ -52,5 +52,5 @@ int main() {
   }
   lithos::println();
 
-  return 0;
+  ret 0;
 }
