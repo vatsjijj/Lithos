@@ -38,7 +38,7 @@ int main() {
   lithos::println();
 
   int test[4] = {1, 2, 3, 4};
-  foreach(num, test) {
+  foreach (num, test) {
     lithos::println(num);
   }
 
