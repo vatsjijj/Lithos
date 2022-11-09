@@ -1,4 +1,4 @@
-#include "lithos.hpp"
+#include "lithos/suite.hpp"
 #include <string>
 
 void fib(int n) {
