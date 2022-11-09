@@ -21,16 +21,16 @@ int main() {
   lithos::printfln("This is a %s test.", test1);
   lithos::string test2 = "printfendl";
   lithos::printfendl("This is a %s test.", test2);
-  lithos::assert(1 + 5 == 6);
+  assert(1 + 5 == 6);
   // THIS WILL FAIL
-  // lithos::assert(1 + 5 == 7);
+  // assert(1 + 5 == 7);
 
   lithos::KeyPair<lithos::string, lithos::string> kp;
   kp.set("K val", "T val");
-  lithos::assert((kp.key == "K val" && kp.value == "T val"));
+  assert((kp.key == "K val" && kp.value == "T val"));
 
   lithos::KeyPair<lithos::string, lithos::string> kp2("val1", "val2");
-  lithos::assert((kp2.key == "val1" && kp2.value == "val2"));
+  assert((kp2.key == "val1" && kp2.value == "val2"));
 
   lithos::createFile("DELETEME.txt");
   lithos::removeFile("DELETEME.txt");

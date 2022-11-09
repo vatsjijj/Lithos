@@ -4,20 +4,20 @@
 #include <filesystem>
 #include "types.hpp"
 #include "testing.hpp"
-using lithos::string, lithos::assertf;
+using lithos::string;
 
 namespace lithos {
   // Runs a command but returns nothing.
   void execCmd(string cmd) {
     int result = system(cmd);
-    assertf(result == 0, "%s did not return zero.", cmd);
+    assert(result == 0);
   }
 
   // Simply creates a file.
   void createFile(string filename) {
     std::fstream file;
     file.open(filename, std::ios::out);
-    assertf(file.is_open(), "Failed to open %s.", filename);
+    assert(file.is_open());
     file.close();
   }
 
@@ -30,7 +30,7 @@ namespace lithos {
   ) {
     std::fstream file;
     file.open(filename, std::ios::out);
-    assertf(file.is_open(), "Failed to open %s.", filename);
+    assert(file.is_open());
     file << contents;
     file.close();
   }
@@ -44,7 +44,7 @@ namespace lithos {
   ) {
     std::fstream file;
     file.open(filename, std::ios_base::app);
-    assertf(file.is_open(), "Failed to open %s.", filename);
+    assert(file.is_open());
     file << contents;
     file.close();
   }
@@ -53,7 +53,7 @@ namespace lithos {
   ) {
     std::fstream file;
     file.open(filename, std::ios_base::app);
-    assertf(file.is_open(), "Failed to open %s.", filename);
+    assert(file.is_open());
     file << contents;
     file.close();
   }
@@ -62,7 +62,7 @@ namespace lithos {
   ) {
     std::fstream file;
     file.open(filename, std::ios_base::app);
-    assertf(file.is_open(), "Failed to open %s.", filename);
+    assert(file.is_open());
     file << contents;
     file.close();
   }
@@ -71,7 +71,7 @@ namespace lithos {
   ) {
     std::fstream file;
     file.open(filename, std::ios_base::app);
-    assertf(file.is_open(), "Failed to open %s.", filename);
+    assert(file.is_open());
     file << contents;
     file.close();
   }
@@ -82,7 +82,7 @@ namespace lithos {
     std::ifstream file;
     string contents;
     file.open(filename);
-    assertf(file.is_open(), "Failed to open %s.", filename);
+    assert(file.is_open());
     std::stringstream buf;
     buf << file.rdbuf();
     file.close();
@@ -91,9 +91,6 @@ namespace lithos {
 
   // Takes a filename, and then deletes the file.
   void removeFile(string filename) {
-    assertf(
-      std::filesystem::remove(filename),
-      "Failed to remove %s.", filename
-    );
+    assert(std::filesystem::remove(filename));
   }
 }
