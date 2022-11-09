@@ -2,11 +2,11 @@
 
 #include <string.h>
 #include "types.hpp"
-using lithos::string;
+using lithos::string, lithos::cstring;
 
 namespace lithos::algo {
-  string reverse(string str) {
-    string out;
+  cstring reverse(cstring str) {
+    cstring out;
     int length = strlen(str);
     char newStr[length];
     int j = 0;

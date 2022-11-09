@@ -3,14 +3,14 @@
 #include <iostream>
 #include <cstdarg>
 #include "types.hpp"
-using lithos::string;
+using lithos::string, lithos::cstring;
 
 namespace lithos {
   // Takes a single string and prints it.
   void print(string str) {
     std::cout << str;
   }
-  void print(std::string str) {
+  void print(cstring str) {
     std::cout << str;
   }
   void print(int num) {
@@ -30,7 +30,7 @@ namespace lithos {
   void println(string str) {
     std::cout << str << "\n";
   }
-  void println(std::string str) {
+  void println(cstring str) {
     std::cout << str << "\n";
   }
   void println(int num) {
@@ -50,7 +50,7 @@ namespace lithos {
   void printendl(string str) {
     std::cout << str << std::endl;
   }
-  void printendl(std::string str) {
+  void printendl(cstring str) {
     std::cout << str << std::endl;
   }
   void printendl(int num) {
@@ -69,6 +69,13 @@ namespace lithos {
   void printfln(string str = "", ...) {
     va_list list;
     va_start(list, str);
+    vprintf(str.c_str(), list);
+    va_end(list);
+    println();
+  }
+  void printfln(cstring str = "", ...) {
+    va_list list;
+    va_start(list, str);
     vprintf(str, list);
     va_end(list);
     println();
@@ -80,6 +87,13 @@ namespace lithos {
   void printfendl(string str = "", ...) {
     va_list list;
     va_start(list, str);
+    vprintf(str.c_str(), list);
+    va_end(list);
+    printendl();
+  }
+  void printfendl(cstring str = "", ...) {
+    va_list list;
+    va_start(list, str);
     vprintf(str, list);
     va_end(list);
     printendl();
@@ -88,6 +102,9 @@ namespace lithos {
   // Takes a single string and
   // prints it to stderr.
   void err(string str) {
+    fprintf(stderr, str.c_str());
+  }
+  void err(cstring str) {
     fprintf(stderr, str);
   }
 
@@ -95,6 +112,10 @@ namespace lithos {
   // prints it to stderr with a
   // newline.
   void errln(string str = "") {
+    fprintf(stderr, str.c_str());
+    fprintf(stderr, "\n");
+  }
+  void errln(cstring str = "") {
     fprintf(stderr, str);
     fprintf(stderr, "\n");
   }
@@ -106,6 +127,12 @@ namespace lithos {
   void errf(string str, ...) {
     va_list list;
     va_start(list, str);
+    vfprintf(stderr, str.c_str(), list);
+    va_end(list);
+  }
+  void errf(cstring str, ...) {
+    va_list list;
+    va_start(list, str);
     vfprintf(stderr, str, list);
     va_end(list);
   }
@@ -115,6 +142,13 @@ namespace lithos {
   // then prints it with a newline.
   // Prints to stderr.
   void errfln(string str = "", ...) {
+    va_list list;
+    va_start(list, str);
+    vfprintf(stderr, str.c_str(), list);
+    va_end(list);
+    fprintf(stderr, "\n");
+  }
+  void errfln(cstring str = "", ...) {
     va_list list;
     va_start(list, str);
     vfprintf(stderr, str, list);

@@ -1,9 +1,13 @@
 #pragma once
 
+#include <string>
+#include "list.hpp"
+
 namespace lithos {
   // Lithos defines a classic C style
   // string type.
-  typedef const char* string;
+  typedef const char* cstring;
+  typedef std::string string;
 
   // Result and Err, unsure of what this could
   // be used for.

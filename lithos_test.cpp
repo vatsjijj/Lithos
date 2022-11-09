@@ -17,9 +17,9 @@ int main() {
   lithos::print("This is a print test.\n");
   lithos::println("This is a println test.");
   lithos::printendl("This is a printendl test.");
-  lithos::string test1 = "printfln";
+  lithos::cstring test1 = "printfln";
   lithos::printfln("This is a %s test.", test1);
-  lithos::string test2 = "printfendl";
+  lithos::cstring test2 = "printfendl";
   lithos::printfendl("This is a %s test.", test2);
   assert(1 + 5 == 6);
   // THIS WILL FAIL

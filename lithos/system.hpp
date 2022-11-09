@@ -4,19 +4,23 @@
 #include <filesystem>
 #include "types.hpp"
 #include "testing.hpp"
-using lithos::string;
+using lithos::cstring;
 
 namespace lithos {
   // Runs a command but returns nothing.
-  void execCmd(string cmd) {
+  void execCmd(cstring cmd) {
     int result = system(cmd);
+    assert(result == 0);
+  }
+  void execCmd(string cmd) {
+    int result = system(cmd.c_str());
     assert(result == 0);
   }
 
   // Simply creates a file.
   void createFile(string filename) {
     std::fstream file;
-    file.open(filename, std::ios::out);
+    file.open(filename.c_str(), std::ios::out);
     assert(file.is_open());
     file.close();
   }
@@ -29,7 +33,7 @@ namespace lithos {
     string filename, string contents = ""
   ) {
     std::fstream file;
-    file.open(filename, std::ios::out);
+    file.open(filename.c_str(), std::ios::out);
     assert(file.is_open());
     file << contents;
     file.close();
